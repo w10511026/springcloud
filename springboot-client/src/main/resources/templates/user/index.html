@@ -39,8 +39,7 @@
         </div>
     </div>
     </form>
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-
+    <div class="newBtnBox" th:if="${newrole}">
         <a id="addUserInf" class="blueBtn-62X30" href="javascript:void(0)">新增</a>
     </div>
     <div class="dataDetailList mt-12">
