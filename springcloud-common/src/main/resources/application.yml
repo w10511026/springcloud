@@ -1,0 +1,27 @@
+server:
+  port: 8083
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  datasource:
+       url: jdbc:mysql://115.28.28.90:3306/test
+       username: root
+       password: 123456
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+security:
+  oauth2:
+      resource:
+        jwt:
+          keyUri: http://localhost/oauth/token_key
+
+
