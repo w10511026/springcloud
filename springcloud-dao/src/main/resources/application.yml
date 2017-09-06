@@ -43,7 +43,7 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL5Dialect
     redis:
-        host: 127.0.0.1
+        host: 115.28.28.90
         port: 6379
         pool:
             max-idle: 8
