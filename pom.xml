@@ -9,7 +9,13 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>springboot-client</module>
+        <module>springcloud-dao</module>
+        <module>springcloud-sso</module>
+        <module>springcloud-security</module>
+        <module>springcloud-web</module>
+        <module>springcloud-web2</module>
+        <module>springcloud-common</module>
+        <module>springcloud-service</module>
     </modules>
 
     <parent>
