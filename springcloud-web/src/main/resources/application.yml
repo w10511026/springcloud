@@ -51,9 +51,14 @@ security:
             keyUri: http://localhost/oauth/token_key
 
 securityconfig:
-  logoutsuccssurl: /tosignout
-  permitall: /rest/**,/bb**
-  deniedpage: /deny
-  urlroles: /**/new/** = admin;
-            /**/edit/** = admin,editor;
-            /**/delete/** = admin
+    logoutsuccssurl: /tosignout
+    permitall: /rest/**,/bb**
+    deniedpage: /deny
+    urlroles: /**/new/** = admin;
+              /**/edit/** = admin,editor;
+              /**/delete/** = admin
+
+logging:
+    file: D:/springcloud-web.log
+    level:
+        com.example : debug

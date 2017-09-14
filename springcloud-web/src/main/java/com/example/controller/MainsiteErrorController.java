@@ -43,4 +43,5 @@ public class MainsiteErrorController implements ErrorController {
         model.addAttribute("user", user);
         return "home";
     }
+
 }

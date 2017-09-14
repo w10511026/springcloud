@@ -1,22 +1,13 @@
 package com.example.config;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
@@ -29,29 +20,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Description </br>
- * @Version Ver 1.0
- * @Author <a href="mailto:wangshuo@ebnew.com">admin</a>
- * @Date 2017/8/21
- */
+
 @Configuration
 @EnableOAuth2Sso
 @EnableConfigurationProperties(SecuritySettings.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    protected Log log = LogFactory.getLog(getClass());
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private SecuritySettings settings;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception {
         http
                 .antMatcher("/**").authorizeRequests()
                 .antMatchers(settings.getPermitall().split(",")).permitAll()
@@ -64,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage(settings.getDeniedpage());
     }
+
 
     @Bean
     public CustomFilterSecurityInterceptor customFilter() throws Exception{
@@ -83,6 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public CustomSecurityMetadataSource securityMetadataSource() {
         return new CustomSecurityMetadataSource(settings.getUrlroles());
     }
+
 
     private CsrfSecurityRequestMatcher csrfSecurityRequestMatcher(){
         CsrfSecurityRequestMatcher csrfSecurityRequestMatcher = new CsrfSecurityRequestMatcher();
@@ -116,5 +102,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         repository.setHeaderName("X-XSRF-TOKEN");
         return repository;
     }
-
 }

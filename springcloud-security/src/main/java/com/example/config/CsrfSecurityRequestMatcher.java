@@ -12,13 +12,10 @@ public class CsrfSecurityRequestMatcher implements RequestMatcher {
     protected Log log = LogFactory.getLog(getClass());
     private Pattern allowedMethods = Pattern
             .compile("^(GET|HEAD|TRACE|OPTIONS)$");
-    /**
-     * 需要排除的url列表
-     */
-    private List<String> execludeUrls;
 
     @Override
     public boolean matches(HttpServletRequest request) {
+
         if (execludeUrls != null && execludeUrls.size() > 0) {
             String servletPath = request.getServletPath();
             for (String url : execludeUrls) {
@@ -30,6 +27,11 @@ public class CsrfSecurityRequestMatcher implements RequestMatcher {
         }
         return !allowedMethods.matcher(request.getMethod()).matches();
     }
+
+    /**
+     * 需要排除的url列表
+     */
+    private List<String> execludeUrls;
 
     public List<String> getExecludeUrls() {
         return execludeUrls;

@@ -28,9 +28,8 @@ import javax.sql.DataSource;
  */
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-@EnableConfigurationProperties(SecuritySettings.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    protected Log log = LogFactory.getLog(getClass());
+    protected Log logger = LogFactory.getLog(getClass());
 
     @Autowired
     private CustomUserDetailService customUserDetailsService;

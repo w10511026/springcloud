@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 import java.util.Iterator;
 
+
 public class CustomAccessDecisionManager implements AccessDecisionManager {
     private static final Logger logger = Logger.getLogger(CustomAccessDecisionManager.class);
 

@@ -2,7 +2,7 @@ package com.example.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "securityconfig", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix="securityconfig")
 public class SecuritySettings {
     private String logoutsuccssurl = "/logout";
     private String permitall = "/api";
